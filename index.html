@@ -37,6 +37,8 @@ h2,
 h3 {
   font-family: "Playfair Display", Georgia, serif;
 }
+
+
 /* ================================
    SNOW
 ================================= */
@@ -176,6 +178,17 @@ section {
   max-width: 650px;
   margin: auto;
   line-height: 1.8;
+}
+
+.cabin-section {
+  padding-top: 40px;
+  padding-bottom: 100px;
+
+  background:
+    linear-gradient(
+      #211712,
+      #17100c
+    );
 }
 /* ================================
    CLUES
@@ -524,6 +537,283 @@ section {
       translateY(0);
   }
 }
+
+/* ================================
+   COZY CABIN ATMOSPHERE
+================================= */
+
+/* Warm ambient glow */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(220, 130, 55, 0.05),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(255, 180, 90, 0.04),
+      transparent 30%
+    );
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* Keep main content above ambient glow */
+
+section {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ================================
+   EMBERS / FIREFLIES
+================================= */
+
+#embers {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 49;
+
+  overflow: hidden;
+}
+
+.ember {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #f6b45f;
+
+  box-shadow:
+    0 0 8px #f6b45f,
+    0 0 18px rgba(246,180,95,0.6);
+
+  animation:
+    floatEmber linear forwards;
+}
+
+
+@keyframes floatEmber {
+
+  0% {
+    transform:
+      translateY(105vh)
+      translateX(0)
+      scale(0.5);
+
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  50% {
+    transform:
+      translateY(50vh)
+      translateX(30px)
+      scale(1);
+  }
+
+  100% {
+    transform:
+      translateY(-10vh)
+      translateX(-40px)
+      scale(0.4);
+
+    opacity: 0;
+  }
+}
+
+
+/* ================================
+   CABIN DESTINATION SECTION
+================================= */
+
+.destination {
+  position: relative;
+}
+
+.destination::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 70%,
+      rgba(234, 142, 60, 0.2),
+      transparent 40%
+    );
+
+  pointer-events: none;
+}
+
+
+/* Make destination content feel like
+   it's inside a cozy cabin */
+
+.destination-content {
+
+  position: relative;
+
+  box-shadow:
+
+    0 30px 90px rgba(0,0,0,0.6),
+
+    inset 0 0 80px rgba(231,150,77,0.08);
+}
+
+
+/* ================================
+   FIREPLACE CARD
+================================= */
+
+.cabin-message {
+
+  max-width: 850px;
+
+  margin: 70px auto 0;
+
+  padding: 50px 40px;
+
+  text-align: center;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(92,52,30,0.8),
+      rgba(35,20,12,0.9)
+    );
+
+  border-radius: 30px;
+
+  border:
+    1px solid rgba(238,180,110,0.2);
+
+  box-shadow:
+
+    0 25px 70px rgba(0,0,0,0.45),
+
+    0 0 80px rgba(214,125,55,0.08);
+}
+
+
+.fireplace {
+
+  font-size: 4rem;
+
+  margin-bottom: 20px;
+
+  animation:
+    fireplaceGlow 2.5s ease-in-out infinite alternate;
+
+  filter:
+    drop-shadow(
+      0 0 20px rgba(255,150,60,0.8)
+    );
+}
+
+
+@keyframes fireplaceGlow {
+
+  from {
+
+    transform:
+      scale(0.95);
+
+    filter:
+
+      drop-shadow(
+        0 0 12px rgba(255,130,40,0.6)
+      );
+  }
+
+  to {
+
+    transform:
+      scale(1.08);
+
+    filter:
+
+      drop-shadow(
+        0 0 35px rgba(255,160,60,1)
+      );
+  }
+}
+
+
+.cabin-message h3 {
+
+  font-size:
+    clamp(2rem, 4vw, 3rem);
+
+  margin-bottom: 20px;
+
+  color:
+    #ffe3bc;
+}
+
+
+.cabin-message p {
+
+  max-width: 650px;
+
+  margin: auto;
+
+  color:
+    #ead7c4;
+
+  line-height:
+    1.8;
+
+  font-size:
+    1.1rem;
+}
+
+
+/* ================================
+   COZY DIVIDER
+================================= */
+
+.cozy-divider {
+
+  width: 120px;
+
+  height: 2px;
+
+  margin: 25px auto;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent,
+      #d99b5b,
+      transparent
+    );
+
+}
 /* ================================
    MOBILE
 ================================= */
@@ -557,6 +847,7 @@ section {
   <!-- Snow Animation -->
   <div id="snow"></div>
 
+  <div id="embers"></div>
 
   <!-- ================================
        HERO
@@ -705,7 +996,50 @@ section {
 
   </section>
 
+<!-- ================================
+     COZY CABIN MOMENT
+================================= -->
 
+<section class="cabin-section">
+
+  <div class="cabin-message">
+
+    <div class="fireplace">
+      🔥
+    </div>
+
+    <h3>
+      Your Mountain Escape
+    </h3>
+
+    <div class="cozy-divider"></div>
+
+    <p>
+      After a day of exploring the mountains,
+      we'll have somewhere warm and cozy to come back to.
+    </p>
+
+    <br>
+
+    <p>
+      Think warm blankets, mountain views,
+      relaxing evenings, and making memories
+      we'll probably talk about for years. ❤️
+    </p>
+
+    <br>
+
+    <a
+      href="https://www.airbnb.com/rooms/1291616705773385244?unique_share_id=6e0b3163-e858-4d36-84fe-e13586c25cec&viralityEntryPoint=1&s=76"
+      class="button"
+      target="_blank"
+    >
+      🏡 See Our Mountain Home
+    </a>
+
+  </div>
+
+</section>
 
   <!-- ================================
        ACTIVITIES
@@ -1113,7 +1447,61 @@ section {
     }
 
 
-    setInterval(createSnowflake, 400);
+    setInterval(createSnowflake, 800);
+
+    /* ================================
+   COZY FLOATING EMBERS
+================================= */
+
+const emberContainer =
+  document.getElementById("embers");
+
+
+function createEmber() {
+
+  const ember =
+    document.createElement("div");
+
+  ember.classList.add("ember");
+
+
+  ember.style.left =
+    Math.random() * 100 + "vw";
+
+
+  const size =
+    Math.random() * 4 + 2;
+
+  ember.style.width =
+    size + "px";
+
+  ember.style.height =
+    size + "px";
+
+
+  ember.style.animationDuration =
+    Math.random() * 8 + 8 + "s";
+
+
+  ember.style.opacity =
+    Math.random() * 0.6 + 0.2;
+
+
+  emberContainer.appendChild(ember);
+
+
+  setTimeout(() => {
+
+    ember.remove();
+
+  }, 18000);
+
+}
+
+
+/* Create an ember occasionally */
+
+setInterval(createEmber, 1200);
 
   </script>
 
